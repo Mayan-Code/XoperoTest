@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoperoCore", "XoperoCore\XoperoCore.csproj", "{FE0902E5-F75F-4050-B78C-83547B16D33D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoperoUI", "XoperoUI\XoperoUI.csproj", "{05F4130A-7B3D-4A6B-A03A-AA72F66216A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE0902E5-F75F-4050-B78C-83547B16D33D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE0902E5-F75F-4050-B78C-83547B16D33D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE0902E5-F75F-4050-B78C-83547B16D33D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE0902E5-F75F-4050-B78C-83547B16D33D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F4130A-7B3D-4A6B-A03A-AA72F66216A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F4130A-7B3D-4A6B-A03A-AA72F66216A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F4130A-7B3D-4A6B-A03A-AA72F66216A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F4130A-7B3D-4A6B-A03A-AA72F66216A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B43EED01-85CE-4F30-A409-E0CFCDBB64D4}
+	EndGlobalSection
+EndGlobal
