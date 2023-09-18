@@ -8,8 +8,8 @@ namespace XoperoCore.RestClient
 {
     internal interface IRestService
     {
-        Task ExecuteGetAsync(string uri, string jsonContent = null);
-        Task ExecutePostAsync(string uri, string jsonContent);
-        Task ExecutePutAsync(string url, string jsonContent);
+        Task<HttpResponseMessage> ExecuteGetAsync(string uri, string jsonContent = null);
+        Task<HttpResponseMessage> ExecutePostAsync(string uri, string jsonContent, string serviceAccessToken);
+        Task<HttpResponseMessage> ExecutePatchAsync(string url, string jsonContent, string serviceAccessToken);
     }
 }

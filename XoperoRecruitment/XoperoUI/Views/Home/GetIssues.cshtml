@@ -1,0 +1,37 @@
+﻿@model XoperoUI.Models.Home.HostingModel
+
+@{
+    ViewData["Title"] = $"{Model.HostingName} Issue List";
+}
+
+@if(Model.Issues == null || !Model.Issues.Any())
+{
+    <h1>You do not have open issue in repository</h1>
+}
+else
+{
+    <h1> Issues </h1><a asp-action="AddIssue" asp-controller="Home">Add new</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{var counter = 1;}
+            @foreach(var issue in Model.Issues)
+            {
+                <tr>
+                    <th scope="row">@(counter++)</th>
+                    <td>@issue.Name</td>
+                    <td>
+                        <a asp-action="EditIssue" asp-controller="Home" asp-route-id="@issue.Id">Edit</a>
+                        <a asp-action="CloseIssue" asp-controller="Home" asp-route-id="@issue.Id">Close</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

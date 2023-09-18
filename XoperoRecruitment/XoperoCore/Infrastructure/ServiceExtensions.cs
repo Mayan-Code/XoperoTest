@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using XoperoCore.HostingService;
+using XoperoCore.HostingService.GitHub;
 using XoperoCore.RestClient;
 
 namespace XoperoCore.Infrastructure
@@ -17,9 +18,12 @@ namespace XoperoCore.Infrastructure
             services.AddHttpClient("hostingServiceHttpClient", config =>
             {
                 config.DefaultRequestHeaders.Clear();
-                config.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                config.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+                config.DefaultRequestHeaders
+                 .UserAgent
+                 .TryParseAdd("MyAgent");
             });
-            services.AddScoped<IHosting, GitHubHostingService>();
+            services.AddSingleton<IHosting, GitHubHostingService>();
             services.AddSingleton<IRestService, RestClient.RestClient>();
         }
     }

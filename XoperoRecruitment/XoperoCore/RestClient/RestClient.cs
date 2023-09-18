@@ -6,6 +6,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Json;
+using System.Reflection.PortableExecutable;
+using System.Net.Http;
 
 namespace XoperoCore.RestClient
 {
@@ -18,17 +20,52 @@ namespace XoperoCore.RestClient
             _httpClientFactory = httpClient;
         }
 
-        public async Task ExecuteGetAsync(string uri, string jsonContent = null)
+        public async Task<HttpResponseMessage> ExecuteGetAsync(string uri, string jsonContent = null)
         {
-           
+            using HttpClient client = _httpClientFactory.CreateClient("hostingServiceHttpClient");
+
+            HttpResponseMessage result = null;
+
+            if (string.IsNullOrEmpty(jsonContent))
+            {
+                result = await client.GetAsync(uri);
+            }
+            else
+            {
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(uri),
+                    Content = new StringContent(jsonContent, Encoding.UTF8, "application/json"),
+                };
+                result = await client.SendAsync(request);
+            }
+
+            return result;
         }
 
-        public async Task ExecutePostAsync(string uri, string jsonContent)
+        public async Task<HttpResponseMessage> ExecutePostAsync(string uri, string jsonContent, string serviceAccessToken)
         {
+            using HttpClient client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", serviceAccessToken);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+            client.DefaultRequestHeaders
+             .UserAgent
+             .TryParseAdd("MyAgent");
+            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            return await client.PostAsync(uri, content);
         }
 
-        public async Task ExecutePutAsync(string url, string jsonContent)
+        public async Task<HttpResponseMessage> ExecutePatchAsync(string url, string jsonContent, string serviceAccessToken)
         {
+            using HttpClient client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", serviceAccessToken);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+            client.DefaultRequestHeaders
+             .UserAgent
+             .TryParseAdd("MyAgent");
+            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            return await client.PatchAsync(url, content);
         }
     }
 }

@@ -6,4 +6,18 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome! You can manage issues from @Model.HostingName</h1>
+
+    <form class="form-horizontal" autocomplete="on" role="form" asp-controller="Home" asp-action="GetIssues" method="post">
+        <input type="hidden" asp-for="HostingName"/>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Repository User's Name" aria-label="Repository User's Name" asp-for="@Model.BaseModel.RepositoryUserName" value="@Model.BaseModel.RepositoryUserName">
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Repository Name" aria-label="Repository Name" value="@Model.BaseModel.RepositoryName" asp-for="BaseModel.RepositoryName">
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Repository PAT" aria-label="Repository PAT" value="@Model.BaseModel.RepositoryPAT" asp-for="BaseModel.RepositoryPAT">
+        </div>
+        <button type="submit" class="btn btn-primary">Get Issues</button>
+    </form>
 </div>

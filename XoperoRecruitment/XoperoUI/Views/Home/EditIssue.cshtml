@@ -1,0 +1,21 @@
+﻿@model XoperoUI.Models.Home.EditIssueModel
+
+@{
+    ViewData["Title"] = $"{Model.HostingName} Edit Issue";
+}
+
+<form id="editIssue" class="form-horizontal" role="form" autocomplete="on" asp-controller="Home" asp-action="EditIssue" method="post">
+    <input type="hidden" asp-for="HostingName" />
+    <input type="hidden" asp-for="Issue.Id" />
+
+     <div class="form-group">
+        <label for="eTitle">Title</label>
+        <input asp-for="Issue.Name" id="taxNumber" class="form-control text-primary-600" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label for="eDescription">Description</label>
+        <<input asp-for="Issue.Description" id="taxNumber" class="form-control text-primary-600" placeholder="Description">
+    </div>
+
+    <button type="submit">Save</button>
+</form>
